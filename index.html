@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>Psychic Game</title>
+</head>
+
+<body>
+	<h1>The Psychic Game</h1>
+
+	<p>Guess what letter I'm thinking of</p>
+
+	<div><p>Wins: <span id="user-wins">0</span></p></div>
+
+	<div><p>Loses: <span id="user-loses">0</span></p></div>
+
+	<div><p>Guesses Left: <span id="user-guesses">9</span></p></div>
+
+	<div><p>Your Guesses so far: <span id="user-text"></span></p></div>
+
+
+
+	<script type="text/javascript">
+
+		var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+		var Wins = 0;
+		var Loses = 0;
+		var Guesses = 9;
+
+		var userWins = document.getElementById("user-wins");
+
+		var userLoses = document.getElementById("user-loses");
+
+		var userGuesses = document.getElementById("user-guesses");
+
+		var userText = document.getElementById("user-text");
+
+		var userPress = "";
+
+
+		reset = function() {
+			Guesses = 9;
+			userText.textContent = "";
+			computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+			userGuesses = document.getElementById("user-guesses");
+			userGuesses.innerHTML = 9;
+		}
+
+		var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+		document.onkeyup = function(event) {
+			var userPress = event.key;
+
+
+			if (Guesses > 1) {
+				console.log(userText);
+				console.log(computerGuess);
+				if (userPress === computerGuess) {
+					console.log(Wins);
+					Wins++; 
+					userWins.innerHTML = Wins;
+					userText.innerHTML += userPress + "," + " ";
+					reset();
+				}
+				else {
+					Guesses--;
+					userGuesses.innerHTML = Guesses;
+					userText.innerHTML += userPress + "," + " ";
+				}
+			}
+			else if (Guesses == 1) {
+				console.log(Loses);
+				Loses++;
+				userLoses.innerHTML = Loses;
+				userText.innerHTML += userPress + "," + " ";
+				reset();
+				console.log(userText);
+			}
+		}
+
+			
+		
+
+	</script>
+
+</body>
+</html>
